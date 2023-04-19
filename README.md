@@ -1,6 +1,6 @@
 # папка Infra
 ### docker-compose.yaml
-```
+```yaml
 version: '3.0'
 
 services:
@@ -28,7 +28,7 @@ services:
 ```
 ## Папка nginx
 ### default.conf
-```
+```apacheconf
 server {
     index index.php;
     root /var/www/html;
@@ -51,7 +51,7 @@ server {
 ```
 ## Папка php
 ### Dockerfile
-```
+```dockerfile
 FROM php:8.0.2-fpm
 
 RUN apt-get update && apt-get install -y \
@@ -79,7 +79,7 @@ COPY --chown=www:www . /var/www/html
 USER www
 ```
 ### xdebug.ini
-```
+```ini
 zend_extension=xdebug
 
 [xdebug]
