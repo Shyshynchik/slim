@@ -2,19 +2,25 @@
 
 namespace App\Slim;
 
-use Slim\Factory\AppFactory;
-use Slim\Psr7\Request;
-use Slim\Psr7\Response;
+use App\Slim\Controller\UserController;
+use DI\Bridge\Slim\Bridge;
+use DI\ContainerBuilder;
 
 require __DIR__ . '/vendor/autoload.php';
+$config = require __DIR__ . '/di-config.php';
 
-$app = AppFactory::create();
+
+$containerBuilder = new ContainerBuilder();
+$containerBuilder->addDefinitions($config);
+$containerBuilder->useAutowiring(true);
+
+$container = $containerBuilder->build();
+
+
+$app = Bridge::create($container);
 
 $app->addErrorMiddleware(false, true, true);
 
-$app->get('/{test}', function (Request $request, Response $response, $args) {
-    $response->getBody()->write("Hello world!");
-    return $response;
-});
+$app->get('/user', [UserController::class, 'get']);
 
 $app->run();
