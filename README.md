@@ -1,5 +1,5 @@
 # папка Infra
-###docker-compose.yaml
+### docker-compose.yaml
 ```
 version: '3.0'
 
@@ -26,8 +26,8 @@ services:
       - PHP_IDE_CONFIG=serverName=Docker
     container_name: slim-php
 ```
-##Папка nginx
-###default.conf
+## Папка nginx
+### default.conf
 ```
 server {
     index index.php;
@@ -49,8 +49,8 @@ server {
 
 }
 ```
-##Папка php
-###Dockerfile
+## Папка php
+### Dockerfile
 ```
 FROM php:8.0.2-fpm
 
@@ -78,7 +78,7 @@ COPY --chown=www:www . /var/www/html
 
 USER www
 ```
-###xdebug.ini
+### xdebug.ini
 ```
 zend_extension=xdebug
 
